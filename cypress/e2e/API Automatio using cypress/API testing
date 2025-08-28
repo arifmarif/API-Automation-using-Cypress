@@ -1,0 +1,63 @@
+/// <reference types="cypress" />
+
+describe('API Automation with Cypress - Reqres.in', () => {
+  
+  it('GET list users', () => {
+    cy.request('GET', 'https://reqres.in/api/users?page=2')
+      .its('status')
+      .should('eq', 200);
+  });
+
+  it('GET single user', () => {
+    cy.request('GET', 'https://reqres.in/api/users/2')
+      .its('body.data')
+      .should('have.property', 'id', 2);
+  });
+
+  it('POST create user', () => {
+    cy.request('POST', 'https://reqres.in/api/users', {
+      name: 'Arif',
+      job: 'QA Engineer'
+    }).then((res) => {
+      expect(res.status).to.eq(201);
+      expect(res.body).to.have.property('name', 'Arif');
+    });
+  });
+
+  it('PUT update user', () => {
+    cy.request('PUT', 'https://reqres.in/api/users/2', {
+      name: 'Arif',
+      job: 'Senior QA Engineer'
+    }).then((res) => {
+      expect(res.status).to.eq(200);
+      expect(res.body).to.have.property('job', 'Senior QA Engineer');
+    });
+  });
+
+  it('PATCH update user job', () => {
+    cy.request('PATCH', 'https://reqres.in/api/users/2', {
+      job: 'Lead QA Engineer'
+    }).then((res) => {
+      expect(res.status).to.eq(200);
+      expect(res.body).to.have.property('job', 'Lead QA Engineer');
+    });
+  });
+
+  it('DELETE user', () => {
+    cy.request('DELETE', 'https://reqres.in/api/users/2')
+      .its('status')
+      .should('eq', 204);
+  });
+
+  it('POST register successful', () => {
+    cy.request('POST', 'https://reqres.in/api/register', {
+      email: 'eve.holt@reqres.in',
+      password: 'pistol'
+    }).then((res) => {
+      expect(res.status).to.eq(200);
+      expect(res.body).to.have.property('id');
+      expect(res.body).to.have.property('token');
+    });
+  });
+
+});

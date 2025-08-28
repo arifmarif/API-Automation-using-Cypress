@@ -1,0 +1,22 @@
+{
+  "name": "tugas_ke_18",
+  "version": "1.0.0",
+  "description": "Tugas Ke 18",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arifmarif/API-Automation-using-Cypress.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arifmarif/API-Automation-using-Cypress/issues"
+  },
+  "homepage": "https://github.com/arifmarif/API-Automation-using-Cypress#readme",
+  "devDependencies": {
+    "cypress": "^15.0.0"
+  }
+}
